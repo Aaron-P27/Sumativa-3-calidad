@@ -1,0 +1,259 @@
+/* ─── Variables de diseño ──────────────────────────────────────────────────── */
+:root {
+  --bg-main: #1a1a2e;
+  --bg-panel: rgba(255, 255, 255, 0.08);
+  --bg-panel-strong: rgba(255, 255, 255, 0.14);
+  --text-main: #f7f7fb;
+  --text-muted: #bfc2d4;
+  --accent: #7c5cff;
+  --accent-2: #23d5ab;
+
+  /* Colores semánticos para tipos de entrada */
+  --vip-color: #ffe066;
+  --vip-edge: #edc94d;
+  --general-color: #23d5ab;
+  --general-edge: #1aad8c;
+  --recaudado-color: #7c5cff;
+
+  --card-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Reset y base ─────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(124, 92, 255, 0.28), transparent 28rem),
+    radial-gradient(circle at 85% 0%, rgba(35, 213, 171, 0.16), transparent 26rem),
+    linear-gradient(135deg, #161625 0%, var(--bg-main) 50%, #10101e 100%);
+  overflow-x: hidden;
+}
+
+/* ─── Header ───────────────────────────────────────────────────────────────── */
+.dashboard-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 15, 28, 0.86);
+  backdrop-filter: blur(16px);
+}
+
+.brand-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  line-height: 0.95;
+}
+
+.header-badge {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.875rem;
+}
+
+/* ─── Tarjetas de stock ────────────────────────────────────────────────────── */
+.stock-card {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: slideUpFade 0.55s ease both;
+}
+
+.stock-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.stock-card.vip {
+  border-top: 3px solid var(--vip-edge);
+}
+
+.stock-card.general {
+  border-top: 3px solid var(--general-edge);
+}
+
+.stock-card.recaudado {
+  border-top: 3px solid var(--recaudado-color);
+}
+
+.stock-number {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stock-card.vip .stock-number { color: var(--vip-color); }
+.stock-card.general .stock-number { color: var(--general-color); }
+.stock-card.recaudado .stock-number { color: var(--recaudado-color); }
+
+.stock-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ─── Toolbar ──────────────────────────────────────────────────────────────── */
+.toolbar {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  background: var(--bg-panel);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+/* ─── Nav pills ────────────────────────────────────────────────────────────── */
+.nav-pills .nav-link {
+  color: var(--text-muted);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.nav-pills .nav-link.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #9b7dff);
+  box-shadow: 0 10px 24px rgba(124, 92, 255, 0.32);
+}
+
+/* ─── Panel de tabla ───────────────────────────────────────────────────────── */
+.table-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  background: var(--bg-panel);
+}
+
+.table-dark {
+  --bs-table-bg: transparent;
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.04);
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.07);
+  --bs-table-border-color: rgba(255, 255, 255, 0.08);
+}
+
+.table-dark thead th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.table-total-row td {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 0.85rem;
+  font-size: 0.95rem;
+}
+
+/* Badges por tipo en tabla */
+.badge-vip {
+  background: var(--vip-color);
+  color: #242424;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.badge-general {
+  background: var(--general-color);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* ─── Empty state ──────────────────────────────────────────────────────────── */
+.empty-state {
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Modal ────────────────────────────────────────────────────────────────── */
+.modal-content {
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #20203a;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.form-control,
+.form-select {
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+.form-control:focus,
+.form-select:focus {
+  color: var(--text-main);
+  border-color: rgba(124, 92, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 0 0 0.25rem rgba(124, 92, 255, 0.18);
+}
+
+.form-control::placeholder {
+  color: rgba(247, 247, 251, 0.45);
+}
+
+.form-select option {
+  background: #20203a;
+  color: var(--text-main);
+}
+
+/* ─── Preview subtotal ─────────────────────────────────────────────────────── */
+.preview-subtotal {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(124, 92, 255, 0.35);
+  background: rgba(124, 92, 255, 0.12);
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+/* ─── Botón degradado ──────────────────────────────────────────────────────── */
+.btn-gradient {
+  color: #fff;
+  border: 0;
+  background: linear-gradient(135deg, var(--accent), #9b7dff);
+  box-shadow: 0 12px 28px rgba(124, 92, 255, 0.28);
+}
+
+.btn-gradient:hover {
+  color: #fff;
+  filter: brightness(1.07);
+}
+
+/* ─── Animación de entrada ─────────────────────────────────────────────────── */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .nav-pills {
+    width: 100%;
+  }
+
+  .btn-gradient {
+    width: 100%;
+  }
+}

@@ -1,0 +1,7 @@
+sonar.projectKey=my-notes-js
+sonar.projectName=my-notes-js
+sonar.projectVersion=1.0
+
+sonar.sources=js
+sonar.exclusions=**/*.min.js
+sonar.sourceEncoding=UTF-8
